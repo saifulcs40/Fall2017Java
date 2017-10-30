@@ -7,7 +7,7 @@ package lab3;
 
 /**
  *
- * @author saiful
+ * @author kmhasan
  */
 public class ComplexNumber {
     private double real;
@@ -17,6 +17,10 @@ public class ComplexNumber {
     public ComplexNumber(double r, double i) {
         real = r;
         imaginary = i;
+    }
+    
+    public ComplexNumber() {
+        
     }
     
     public ComplexNumber add(ComplexNumber b) {
@@ -30,7 +34,6 @@ public class ComplexNumber {
     }
     
     public ComplexNumber subtract(ComplexNumber b) {
-        // ADD YOUR CODE HERE
         ComplexNumber a = this;
         
         double r = a.real - b.real;
@@ -41,24 +44,22 @@ public class ComplexNumber {
     }
     
     public ComplexNumber multiply(ComplexNumber b) {
-        // ADD YOUR CODE HERE
         ComplexNumber a = this;
+        
         double r = a.real * b.real - a.imaginary * b.imaginary;
         double i = a.real * b.imaginary + a.imaginary * b.real;
         ComplexNumber c = new ComplexNumber(r, i);
-        
         
         return c;
     }
     
     public ComplexNumber divide(ComplexNumber b) {
-        // ADD YOUR CODE HERE
-        double r = a.real * b.real + a.imaginary * b.imaginary;
-        double i = a.real * b.imaginary + a.imaginary * b.real;
-        ComplexNumber c = new ComplexNumber(r, i);
-        return null;
+        ComplexNumber n = this.multiply(new ComplexNumber(b.real, -b.imaginary));
+        double d = b.real * b.real + b.imaginary * b.imaginary;
+        return new ComplexNumber(n.real / d, n.imaginary / d);
     }
     
+    @Override
     public String toString() {
         return String.format("%.2f + %.2fi", real, imaginary);
     }
